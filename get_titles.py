@@ -1,12 +1,12 @@
 from pyspark import SparkContext
 import re
-# import glob
 import os
 
 
 def grab_title(document):
     title_pattern = r"\\title\{(.*?)\}"
-    document_text = document[1]
+    document_path, document_text = document
+    document_id = document_path.split('/')[-1][5:10]
     title_check = re.search(title_pattern, document_text, re.MULTILINE | re.DOTALL)
     if title_check != None:
         title_start_index = title_check.start(1)
@@ -29,28 +29,11 @@ def grab_title(document):
             i += 1
 
         title_text = document_text[title_start_index:i-1]
+
         words = title_text.split()
         for word in words:
             if not word.startswith("\\$"):
                 yield (word, 1)
-        #return((document[0], title_text))
-
-    #
-    # title = False
-    #
-    # for line in lines:
-    #     # line = line.strip()
-    #     # print(line)
-    #     # input()
-    #     if line = "":
-    #         continue
-    #     else:
-    #         title_check = re.match(title_pattern,line)
-    #         if title_check != None:
-    #
-    #             return(title_check.group(1))
-
-
 
 
 sc = SparkContext('local[*]', 'App Name')
@@ -58,8 +41,6 @@ sc = SparkContext('local[*]', 'App Name')
 in_dir = './outdir3'
 data_path = os.path.join(in_dir,'*.tex')
 tex_files = sc.wholeTextFiles(data_path)
-titles = tex_files.flatMap(grab_title)
-
-for t in titles.take(50):
-    print(t)
-    print('\n\n')
+title_words = tex_files.flatMap(grab_title)
+title_word_counts = title_words.reduceByKey(lambda x,y: x + y)
+title_word_counts.saveAsTextFile('title_word_counts')
