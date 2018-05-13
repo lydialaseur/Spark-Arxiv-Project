@@ -1,7 +1,9 @@
 from pyspark import SparkContext
 import re
 import os
+from nltk.corpus import stopwords
 
+english_stopwords = set(stopwords.words("english"))
 
 def grab_title(document):
     title_pattern = r"\\title\{(.*?)\}"
@@ -35,9 +37,10 @@ def grab_title(document):
             banned_characters = set("\\$=}{+")
             if not any((c in banned_characters) for c in word):
                 word = word.lower()
-                pattern = re.escape('?!.%<>(),')
+                pattern = re.escape('?!.%<>(), ')
                 word = re.sub('[{0}]'.format(pattern), '', word)
-                yield (word, 1)
+                if word != '' and word not in english_stopwords:
+                    yield (word, 1)
 
 
 sc = SparkContext('local[*]', 'App Name')

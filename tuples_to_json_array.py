@@ -23,6 +23,6 @@ if __name__ == '__main__':
 	with open(args.sourcefile, 'r') as sourcefile:
 		values = [parse_row(row) for row in sourcefile.readlines()]
 	with open(args.destinationfile, 'w') as destinationfile:
-		json.dump(destinationfile, values)
+		json.dump(values, destinationfile)
 
 
