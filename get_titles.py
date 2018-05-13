@@ -35,7 +35,7 @@ def grab_title(document):
             banned_characters = set("\\$=}{+")
             if not any((c in banned_characters) for c in word):
                 word = word.lower()
-                pattern = re.escape('?!.%<>()')
+                pattern = re.escape('?!.%<>(),')
                 word = re.sub('[{0}]'.format(pattern), '', word)
                 yield (word, 1)
 
@@ -47,4 +47,4 @@ data_path = os.path.join(in_dir,'*.tex')
 tex_files = sc.wholeTextFiles(data_path)
 title_words = tex_files.flatMap(grab_title)
 title_word_counts = title_words.reduceByKey(lambda x,y : x + y)
-title_word_counts.saveAsTextFile('title_word_counts_4')
+title_word_counts.saveAsTextFile('title_word_counts_5')
