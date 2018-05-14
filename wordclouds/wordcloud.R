@@ -18,3 +18,21 @@ wordcloud(words_df$word,
           fixed.asp = FALSE,
           colors = magma(100, direction = -1))
 dev.off()
+
+abstract_words_0 <- fromJSON("wordclouds/abstracts_part0.json")
+abstract_words_1 <- fromJSON("wordclouds/abstracts_part1.json")
+abstract_words <- rbind(abstract_words_0, abstract_words_1)
+abstract_words_df <- data.frame(word = abstract_words[,1], 
+                                count = as.numeric(abstract_words[,2]))
+
+png ("abstract_wordcloud.png", width=12,height=8, units='in', res=300)
+wordcloud(abstract_words_df$word, 
+          abstract_words_df$count, 
+          random.order = FALSE,
+          max.words = Inf, 
+          scale = c(6, 0.025),
+          rot.per = 0,
+          fixed.asp = FALSE,
+          colors = cividis(100, direction = -1))
+dev.off()
+
