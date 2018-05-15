@@ -1,0 +1,190 @@
+---
+title: "arXiv Plots"
+author: "Lydia LaSeur"
+date: "5/13/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(data.table)
+library(RColorBrewer)
+library(viridis)
+```
+
+
+```{r}
+all_emails <- fread("all_emails_ids.csv", header = TRUE, data.table = FALSE)
+n_distinct(all_emails$document_id)
+
+uni_emails <- fread("emails_with_info.csv", header = TRUE, data.table = FALSE)
+uni_names_countries <- unique(uni_emails[,c("institution","country")]) 
+
+non_uni_domains <- fread("unmatched_email_domains.csv", header = TRUE, data.table = FALSE)
+
+non_uni_addresses <- fread("unmatched_email_addresses.csv", header = TRUE, data.table = FALSE)
+
+ids_categories <- fread("arxiv_ids_categories.csv", header = TRUE, data.table = FALSE, colClasses = c("integer","factor","factor"))
+
+readable_categories <- c("Astrophysics",
+                         "Condensed Matter",
+                         "Comp Sci", 
+                         "Econ", 
+                         "Elec Eng/Systems Sci", 
+                         "Gen Relativity &\nQuantum Cosmology",
+                         "HEP Exp",
+                         "HEP Lattice",
+                         "HEP Phenomena",
+                         "HEP Theory",
+                         "Math",
+                         "Mathematical Phys",
+                         "Nonlinear Sci",
+                         "Nuclear Exp",
+                         "Nuclear Theory",
+                         "Physics",
+                         "Quant Bio",
+                         "Quant Fin",
+                         "Quantum Phys",
+                         "Stats")
+
+levels(ids_categories$main_category) <- readable_categories
+```
+
+```{r}
+non_uni_addresses_cts <- as.data.frame(table(non_uni_addresses$email_address))
+colnames(non_uni_addresses_cts) <- c("address","frequency")
+
+non_uni_domains_cts <- as.data.frame(table(non_uni_domains$email_domain))
+colnames(non_uni_domains_cts) <- c("domain","frequency")
+
+arrange(non_uni_addresses_cts, desc(frequency))
+arrange(non_uni_domains_cts, desc(frequency))
+
+```
+
+```{r}
+papers_per_uni <- uni_emails %>% 
+                    group_by(institution) %>% 
+                    summarise(num_unique_papers = n_distinct(document_id)) %>% 
+                    arrange(desc(num_unique_papers))
+
+top_uni_names <- papers_per_uni$institution[1:20]
+
+
+
+uni_emails <- uni_emails %>% 
+                inner_join(ids_categories, by = "document_id")
+
+
+top_uni_emails <- uni_emails %>% 
+                    filter(institution %in% top_uni_names)
+
+top_uni_emails$institution <- factor(top_uni_emails$institution, levels = rev(top_uni_names))
+
+top_uni_papers <- top_uni_emails %>%
+  group_by(institution, document_id) %>% 
+  summarise(country = unique(country), category = unique(main_category))
+
+
+top_uni_papers %>%
+  ggplot(aes(x = institution, fill = country)) + geom_bar(stat = "count") + 
+  scale_fill_brewer(palette = "Set3", direction = -1) +
+  labs(x = "", y = "Number of Unique Papers", fill = "Country of\nInstitution", title = "Top 20 Institutions of Jan 2018") + coord_flip() 
+
+
+ggsave("top_20_unis.png", width = 13, height = 8, units = "in")
+```
+
+```{r}
+top_uni_papers %>%
+  ggplot(aes(x = institution)) + geom_bar(aes(fill = category), stat = "count", position = "fill") + coord_flip()  +
+scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20),
+                    guide = guide_legend(nrow=3)) +
+  theme(legend.position="bottom") +
+  labs(x = "", y = "Percentage of Unique Papers", fill = "Category", title = "Distribution of Categories for Top 20 Institutions")
+
+ggsave("top_20_unis_cats.png", width = 13, height = 8, units = "in")
+```
+
+```{r}
+
+```
+
+```{r}
+papers_per_country <- uni_emails %>% 
+                    group_by(country) %>% 
+                    summarise(num_unique_papers = n_distinct(document_id)) %>% 
+                    arrange(desc(num_unique_papers))
+
+top_country_names <- papers_per_country$country[1:20]
+
+top_country_emails <- uni_emails %>% 
+                    filter(country %in% top_country_names)
+
+top_country_emails$country <- factor(top_country_emails$country, levels = rev(top_country_names))
+
+top_country_papers <- top_country_emails %>%
+  group_by(country, document_id) %>% 
+  summarise(category = unique(main_category))
+
+top_country_papers %>%
+  ggplot(aes(x = country, fill = country)) + geom_bar(stat = "count") +
+  scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20)) +
+  theme(legend.position="none") +
+  coord_flip() +
+  labs(x = "", y = "Number of Unique Papers", title = "Top 20 Countries of Jan 2018")
+ggsave("top_20_countries.png", width = 13, height = 8, units = "in")
+
+top_country_papers %>%
+  ggplot(aes(x = country, fill = category)) + geom_bar(stat = "count", position = "fill") +
+  scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20),
+                    guide = guide_legend(nrow=3)) +
+  theme(legend.position="bottom", legend.justification = "left") +
+  coord_flip() +
+  labs(x = "", y = "Percentage of Unique Papers", fill = "Category", title = "Distribution of Categories for Top 20 Countries")
+
+ggsave("top_20_countries_cats.png", width = 13, height = 8, units = "in")
+
+
+  # scale_fill_brewer(palette = "Set3", direction = -1) +
+  # labs(x = "Institution", y = "Number of Unique Papers", fill = "Country of\nInstitution", title = "Top 30 Institutions of Jan 2018") 
+```
+
+```{r}
+papers_per_category <- uni_emails %>% 
+                    group_by(main_category) %>% 
+                    summarise(num_unique_papers = n_distinct(document_id)) %>% 
+                    arrange(desc(num_unique_papers))
+
+top_category_names <- papers_per_category$main_category
+
+top_category_emails <- uni_emails
+
+top_category_emails$main_category <- factor(top_category_emails$main_category, levels = rev(top_category_names))
+
+top_category_papers <- top_category_emails %>%
+  mutate(country_top = ifelse(country %in% top_country_names, country, "Other"))
+  
+
+top_category_papers %>%
+  group_by(main_category, document_id) %>% 
+  ggplot(aes(x = main_category, fill = main_category)) + geom_bar(stat = "count") +
+  scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20)) +
+  theme(legend.position="none") +
+  coord_flip() +
+  labs(x = "", y = "Number of Unique Papers", title = "Distribution of Categories for Jan 2018")
+
+ggsave("cat_dist.png", width = 13, height = 8, units = "in")
+
+top_category_papers %>%
+  group_by(main_category, document_id) %>% 
+  ggplot(aes(x = main_category, fill = country_top)) + geom_bar(stat = "count", position = "fill") +
+  scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Set3"))(21),
+                    guide = guide_legend(nrow=2)) +
+  theme(legend.position="bottom") +
+  coord_flip() +
+  labs(x = "", y = "Percentage of Unique Papers", fill = "Top 20\nCountries", title = "Distribution of Countries within Category")
+ggsave("cat_by_country.png", width = 13, height = 8, units = "in")
+```
+

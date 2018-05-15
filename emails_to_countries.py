@@ -6,7 +6,8 @@ import csv
 parser = argparse.ArgumentParser(description="Convert a list of tuples into a JSON array")
 parser.add_argument("sourcefile", help="Text file containing a list of email addresses")
 parser.add_argument("destinationfile_matched", help="Where to write the CSV mapping emails to countries")
-parser.add_argument("destinationfile_unmatched", help="Where to write the email addresses that were not matched to a univerity")
+parser.add_argument("dest_unmatched_addresses", help="Where to write the email addresses that were not matched to a univerity")
+parser.add_argument("dest_unmatched_domains", help="Where to write the email domains that were not matched to a univerity")
 
 def read_and_load_email_domains():
 	"""
@@ -42,15 +43,18 @@ if __name__ == '__main__':
 
 	university_lookup = read_and_load_email_domains()
 
-	unmatched_domains = []
-
+	unmatched_domains = [("document_id","email_domain")]
+	unmatched_addresses = [("document_id","email_address")]
 	with open(args.sourcefile) as sourcefile:
-		emails = sourcefile.readlines()
+		docs_emails = sourcefile.readlines()
 
-	email_csv = [("email", "domain", "institution", "country", "country_code", "province")]
+	email_csv = [("document_id", "email", "domain", "institution", "country", "country_code", "province")]
 
-	for email in emails:
+	for row in docs_emails:
+		doc_id, email = row.split(",")
+
 		email = email.strip()
+
 		if email[-1] == ".":
 			email = email[0:len(email) - 1]
 
@@ -61,7 +65,8 @@ if __name__ == '__main__':
 			domain_lookup = university_lookup.get(domain)
 			if domain_lookup:
 				university_info = university_lookup[domain]
-				email_csv.append((email,
+				email_csv.append((doc_id,
+					email,
 					domain,
 					university_info.get("name"),
 					university_info.get("country"),
@@ -74,13 +79,14 @@ if __name__ == '__main__':
 
 
 		if match_found == False:
-			unmatched_domains.append(email.split("@")[-1]+'\n')
+
+			unmatched_domains.append((doc_id,email.split("@")[-1]))
+			unmatched_addresses.append((doc_id,email))
 
 	print()
-	print("Total number of email addresses: {0}".format(len(emails)))
+	print("Total number of email addresses: {0}".format(len(docs_emails)))
 	print("Number of email addresses matched to a university: {0}".format(len(email_csv)))
-	print("Number of email addresses not matched to a university: {0}".format(len(unmatched_domains)))
-	print("Number of unique email domains that were not matched to a university: {0}".format(len(set(unmatched_domains))))
+	print("Number of email addresses not matched to a university: {0}".format(len(unmatched_addresses)))
 	print()
 
 	with open(args.destinationfile_matched, 'w') as destinationfile_matched:
@@ -88,5 +94,13 @@ if __name__ == '__main__':
 		for row in email_csv:
 			writer.writerow(row)
 
-	with open(args.destinationfile_unmatched, 'w') as destinationfile_unmatched:
-		destinationfile_unmatched.writelines(unmatched_domains)
+	with open(args.dest_unmatched_addresses, 'w') as dest_unmatched_addresses:
+		writer = csv.writer(dest_unmatched_addresses)
+		for row in unmatched_addresses:
+			writer.writerow(row)
+
+
+	with open(args.dest_unmatched_domains, 'w') as dest_unmatched_domains:
+		writer = csv.writer(dest_unmatched_domains)
+		for row in unmatched_domains:
+			writer.writerow(row)
