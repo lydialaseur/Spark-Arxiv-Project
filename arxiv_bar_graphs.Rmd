@@ -102,7 +102,7 @@ top_uni_papers %>%
   ggplot(aes(x = institution)) + geom_bar(aes(fill = category), stat = "count", position = "fill") + coord_flip()  +
 scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20),
                     guide = guide_legend(nrow=3)) +
-  theme(legend.position="bottom", axis.text = element_text(size = 15),axis.title = element_text(size = rel(2)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 14), legend.title = element_text(size = rel(1.4))) +
+  theme(legend.position="bottom", legend.justification = "left",axis.text = element_text(size = 15),axis.title = element_text(size = rel(1.7)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 11), legend.title = element_text(size = rel(1))) +
   labs(x = "", y = "Percentage of Unique Papers", fill = "Category", title = "Distribution of Categories for Top 20 Institutions")
 
 ggsave("top_20_unis_cats.png", width = 13, height = 8, units = "in")
