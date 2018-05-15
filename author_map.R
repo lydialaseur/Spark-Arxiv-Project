@@ -42,9 +42,10 @@ p <- country.counts %>% plot_geo() %>%
   ) %>%
   colorbar(title = 'Number<br>of<br>Authors') %>%
   layout(
-    title = 'arXiv Authors World-Wide<br>Source:<a href="https://www.youtube.com/watch?v=tUIHPl3WHfk">Source goes here</a>',
+    title = 'arXiv Authors World-Wide',
     geo = g
   )
 
 # Save plotly figure
-htmlwidgets::saveWidget(p, file = "map.html")
+export(p, file = "map.png")
+#htmlwidgets::saveWidget(p, file = "map.html")

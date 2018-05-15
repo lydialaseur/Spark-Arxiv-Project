@@ -98,9 +98,10 @@ p <- state.counts %>% plot_geo(locationmode = 'USA-states') %>%
   ) %>%
   colorbar(title = 'Number<br>of<br>Authors') %>%
   layout(
-    title = 'arXiv Authors in the U.S.<br>Source:<a href="https://www.youtube.com/watch?v=tUIHPl3WHfk">Source goes here</a>',
+    title = 'arXiv Authors in the U.S.',
     geo = g
   )
 
 # Save plotly figure
-htmlwidgets::saveWidget(p, file = "map_us.html")
+export(p, file = "map_us.png")
+#htmlwidgets::saveWidget(p, file = "map_us.html")
