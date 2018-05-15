@@ -18259,7 +18259,8 @@
     "alpha_two_code": "AT",
     "state-province": null,
     "domains": [
-      "kfunigraz.ac.at"
+      "kfunigraz.ac.at",
+      "uni-graz.at"
     ],
     "country": "Austria"
   },
@@ -20719,7 +20720,8 @@
     "alpha_two_code": "BE",
     "state-province": null,
     "domains": [
-      "kuleuven.ac.be"
+      "kuleuven.ac.be",
+      "kuleuven.be"
     ],
     "country": "Belgium"
   },
@@ -20743,7 +20745,8 @@
     "alpha_two_code": "BE",
     "state-province": null,
     "domains": [
-      "rug.ac.be"
+      "rug.ac.be",
+      "ugent.be"
     ],
     "country": "Belgium"
   },
@@ -20767,7 +20770,8 @@
     "alpha_two_code": "BE",
     "state-province": null,
     "domains": [
-      "ua.ac.be"
+      "ua.ac.be",
+      "uantwerpen.be"
     ],
     "country": "Belgium"
   },
@@ -20803,7 +20807,8 @@
     "alpha_two_code": "BE",
     "state-province": null,
     "domains": [
-      "ucl.ac.be"
+      "ucl.ac.be",
+      "uclouvain.be"
     ],
     "country": "Belgium"
   },
@@ -20863,7 +20868,8 @@
     "alpha_two_code": "BE",
     "state-province": null,
     "domains": [
-      "ulg.ac.be"
+      "ulg.ac.be",
+      "uliege.be"
     ],
     "country": "Belgium"
   },
@@ -26540,7 +26546,8 @@
     "alpha_two_code": "CA",
     "state-province": null,
     "domains": [
-      "utoronto.ca"
+      "utoronto.ca",
+      "toronto.edu"
     ],
     "country": "Canada"
   },
@@ -27981,6 +27988,18 @@
     "state-province": null,
     "domains": [
       "cppsu.edu.cn"
+    ],
+    "country": "China"
+  },
+  {
+    "web_pages": [
+      "http://www.cas.cn/"
+    ],
+    "name": "Chinese Academy of Sciences",
+    "alpha_two_code": "CN",
+    "state-province": null,
+    "domains": [
+      "ac.cn"
     ],
     "country": "China"
   },
@@ -29872,11 +29891,12 @@
     "web_pages": [
       "http://www.njtu.edu.cn/"
     ],
-    "name": "Northern Jiaotong University",
+    "name": "Beijing Jiaotong University",
     "alpha_two_code": "CN",
     "state-province": null,
     "domains": [
-      "njtu.edu.cn"
+      "njtu.edu.cn",
+      "btju.edu.cn"
     ],
     "country": "China"
   },
@@ -29972,7 +29992,8 @@
     "alpha_two_code": "CN",
     "state-province": null,
     "domains": [
-      "nku.nankai.edu.cn"
+      "nku.nankai.edu.cn",
+      "nankai.edu.cn"
     ],
     "country": "China"
   },
@@ -37370,6 +37391,18 @@
   },
   {
     "web_pages": [
+      "http://www.aalto.fi/"
+    ],
+    "name": "Aalto University",
+    "alpha_two_code": "FI",
+    "state-province": null,
+    "domains": [
+      "aalto.fi"
+    ],
+    "country": "Finland"
+  },
+  {
+    "web_pages": [
       "http://www.abo.fi/"
     ],
     "name": "Abo Akademi University",
@@ -37928,7 +37961,8 @@
     "alpha_two_code": "FR",
     "state-province": null,
     "domains": [
-      "cribx1.u-bordeaux.fr"
+      "cribx1.u-bordeaux.fr",
+      "u-bordeaux.fr"
     ],
     "country": "France"
   },
@@ -39644,7 +39678,8 @@
     "alpha_two_code": "FR",
     "state-province": null,
     "domains": [
-      "jussieu.fr"
+      "jussieu.fr",
+      "upmc.fr"
     ],
     "country": "France"
   },
@@ -40691,6 +40726,18 @@
     "state-province": null,
     "domains": [
       "upmf-grenoble.fr"
+    ],
+    "country": "France"
+  },
+  {
+    "web_pages": [
+      "https://www.univ-grenoble-alpes.fr"
+    ],
+    "name": "Université Grenoble Alpes",
+    "alpha_two_code": "FR",
+    "state-province": null,
+    "domains": [
+      "univ-grenoble-alpes.fr"
     ],
     "country": "France"
   },
@@ -41977,6 +42024,18 @@
     "state-province": null,
     "domains": [
       "fh-karlsruhe.de"
+    ],
+    "country": "Germany"
+  },
+  {
+    "web_pages": [
+      "http://www.kit.de/"
+    ],
+    "name": "Karlsruher Institut für Technologie",
+    "alpha_two_code": "DE",
+    "state-province": null,
+    "domains": [
+      "kit.de"
     ],
     "country": "Germany"
   },
@@ -43584,7 +43643,8 @@
     "alpha_two_code": "DE",
     "state-province": null,
     "domains": [
-      "ruhr-uni-bochum.de"
+      "ruhr-uni-bochum.de",
+      "rub.de"
     ],
     "country": "Germany"
   },
@@ -44029,7 +44089,8 @@
     "alpha_two_code": "DE",
     "state-province": null,
     "domains": [
-      "uni-erlangen.de"
+      "uni-erlangen.de",
+      "fau.de"
     ],
     "country": "Germany"
   },
@@ -44463,7 +44524,8 @@
     "alpha_two_code": "DE",
     "state-province": null,
     "domains": [
-      "uni-regensburg.de"
+      "uni-regensburg.de",
+      "ur.de"
     ],
     "country": "Germany"
   },
@@ -44487,7 +44549,8 @@
     "alpha_two_code": "DE",
     "state-province": null,
     "domains": [
-      "uni-saarland.de"
+      "uni-saarland.de",
+      "uni-sb.de"
     ],
     "country": "Germany"
   },
@@ -46119,7 +46182,8 @@
     "alpha_two_code": "HK",
     "state-province": null,
     "domains": [
-      "cuhk.hk"
+      "cuhk.hk",
+      "cuhk.edu.hk"
     ],
     "country": "Hong Kong"
   },
@@ -48177,6 +48241,18 @@
   },
   {
     "web_pages": [
+      "http://www.iiserpune.ac.in"
+    ],
+    "name": "Indian Institute of Science Education and Research, Pune",
+    "alpha_two_code": "IN",
+    "state-province": null,
+    "domains": [
+      "iiserpune.ac.in"
+    ],
+    "country": "India"
+  },
+  {
+    "web_pages": [
       "www.iiit-bh.ac.in/"
     ],
     "name": "International Institute of Information Technology, Bhubaneswar",
@@ -48267,7 +48343,8 @@
     "alpha_two_code": "IN",
     "state-province": null,
     "domains": [
-      "iisc.ernet.in"
+      "iisc.ernet.in",
+      "iisc.ac.in"
     ],
     "country": "India"
   },
@@ -48309,6 +48386,18 @@
   },
   {
     "web_pages": [
+      "http://www.iitgn.ac.in/"
+    ],
+    "name": "Indian Institute of Technology, Gandhinagar",
+    "alpha_two_code": "IN",
+    "state-province": null,
+    "domains": [
+      "iitgn.ac.in"
+    ],
+    "country": "India"
+  },
+  {
+    "web_pages": [
       "http://www.iith.ac.in/"
     ],
     "name": "Indian Institute of Technology, Hyderabad",
@@ -48339,7 +48428,8 @@
     "alpha_two_code": "IN",
     "state-province": null,
     "domains": [
-      "iitkgp.ernet.in"
+      "iitkgp.ernet.in",
+      "iitkgp.ac.in"
     ],
     "country": "India"
   },
@@ -65524,6 +65614,18 @@
     "state-province": null,
     "domains": [
       "vkgu.kz"
+    ],
+    "country": "Kazakhstan"
+  },
+  {
+    "web_pages": [
+      "http://www.nu.edu.kz/"
+    ],
+    "name": "Nazarbayev University",
+    "alpha_two_code": "KZ",
+    "state-province": null,
+    "domains": [
+      "nu.edu.kz"
     ],
     "country": "Kazakhstan"
   },
@@ -83682,7 +83784,8 @@
     "alpha_two_code": "PL",
     "state-province": null,
     "domains": [
-      "uw.edu.pl"
+      "uw.edu.pl",
+      "mimuw.edu.pl"
     ],
     "country": "Poland"
   },
@@ -84476,6 +84579,18 @@
     "state-province": null,
     "domains": [
       "pedago.pt"
+    ],
+    "country": "Portugal"
+  },
+  {
+    "web_pages": [
+      "https://tecnico.ulisboa.pt/"
+    ],
+    "name": "Instituto Superior Técnico",
+    "alpha_two_code": "PT",
+    "state-province": null,
+    "domains": [
+      "tecnico.ulisboa.pt"
     ],
     "country": "Portugal"
   },
@@ -91081,6 +91196,18 @@
   },
   {
     "web_pages": [
+      "http://www.sutd.edu.sg/"
+    ],
+    "name": "Singapore University of Technology and Design",
+    "alpha_two_code": "SG",
+    "state-province": null,
+    "domains": [
+      "sutd.edu.sg"
+    ],
+    "country": "Singapore"
+  },
+  {
+    "web_pages": [
       "http://www.smu.edu.sg/"
     ],
     "name": "Singapore Management University",
@@ -95875,12 +96002,12 @@
       "http://www.nsysu.edu.tw/"
     ],
     "name": "National Sun Yat-Sen University",
-    "alpha_two_code": "TW",
+    "alpha_two_code": "CN",
     "state-province": null,
     "domains": [
-      "nsysu.edu.tw"
+      "sysu.edu.cn"
     ],
-    "country": "Taiwan, Province of China"
+    "country": "China"
   },
   {
     "web_pages": [
@@ -100574,7 +100701,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "bris.ac.uk"
+      "bris.ac.uk",
+      "bristol.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -100814,7 +100942,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "dur.ac.uk"
+      "dur.ac.uk",
+      "durham.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -100862,7 +100991,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "ex.ac.uk"
+      "ex.ac.uk",
+      "exeter.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101066,7 +101196,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "ic.ac.uk"
+      "ic.ac.uk",
+      "imperial.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101198,7 +101329,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "lancs.ac.uk"
+      "lancs.ac.uk",
+      "lancaster.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101306,7 +101438,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "liv.ac.uk"
+      "liv.ac.uk",
+      "liverpool.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101318,7 +101451,7 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "https://www.ljmu.ac.uk/"
+      "ljmu.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101596,7 +101729,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "qmw.ac.uk"
+      "qmw.ac.uk",
+      "qmul.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101692,7 +101826,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "rhbnc.ac.uk"
+      "rhbnc.ac.uk",
+      "rhul.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101848,7 +101983,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "shef.ac.uk"
+      "shef.ac.uk",
+      "sheffield.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -101956,7 +102092,8 @@
     "alpha_two_code": "GB",
     "state-province": null,
     "domains": [
-      "st-and.ac.uk"
+      "st-and.ac.uk",
+      "st-andrews.ac.uk"
     ],
     "country": "United Kingdom"
   },
@@ -102436,7 +102573,8 @@
     "alpha_two_code": "UY",
     "state-province": null,
     "domains": [
-      "universidad.edu.uy"
+      "universidad.edu.uy",
+      "unorte.edu.uy"
     ],
     "country": "Uruguay"
   },

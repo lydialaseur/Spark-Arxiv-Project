@@ -4,7 +4,7 @@ install_load('plotly')
 install_load('RColorBrewer')
 install_load('webshot')
 
-df <- read.csv('emails_with_info.csv')
+df <- read.csv('emails_with_info2.csv')
 
 df$province <- NULL  # province has no non-NAs, so remove it
 
@@ -56,7 +56,7 @@ df.us <- left_join(df.us, institution_map, by = "institution")
 # Grab number of entries within each state
 state.counts <- df.us %>% 
   group_by(state) %>% 
-  summarise(count = n())
+  summarise(count = n_distinct(document_id))
 
 # Give each state code a longer name for text hover
 # (only includes the states for the codes seen)
@@ -98,7 +98,7 @@ p <- state.counts %>% plot_geo(locationmode = 'USA-states') %>%
   ) %>%
   colorbar(title = 'Number<br>of<br>Authors') %>%
   layout(
-    title = 'arXiv Authors in the U.S.<br>Source:<a href="https://www.youtube.com/watch?v=tUIHPl3WHfk">Source goes here</a>',
+    title = 'arXiv Authors in the U.S.',
     geo = g
   )
 

@@ -4,14 +4,14 @@ install_load('plotly')
 install_load('RColorBrewer')
 install_load('webshot')
 
-df <- read.csv('emails_with_info.csv')
+df <- read.csv('emails_with_info2.csv')
 
 df$province <- NULL  # province has no non-NAs, so remove it
 
 # Grab number of entries within each country
 country.counts <- df %>% 
                     group_by(country_code) %>% 
-                    summarise(count = n())
+                    summarise(count = n_distinct(document_id))
 
 # Map every ISO Alpha-2 country code to an ISO Alpha-3 country code
 # (plotly requires Alpha-3)
@@ -42,7 +42,7 @@ p <- country.counts %>% plot_geo() %>%
   ) %>%
   colorbar(title = 'Number<br>of<br>Authors') %>%
   layout(
-    title = 'arXiv Authors World-Wide<br>Source:<a href="https://www.youtube.com/watch?v=tUIHPl3WHfk">Source goes here</a>',
+    title = 'arXiv Authors World-Wide',
     geo = g
   )
 
