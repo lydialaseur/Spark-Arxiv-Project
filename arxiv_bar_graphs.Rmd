@@ -90,7 +90,8 @@ top_uni_papers <- top_uni_emails %>%
 top_uni_papers %>%
   ggplot(aes(x = institution, fill = country)) + geom_bar(stat = "count") + 
   scale_fill_brewer(palette = "Set3", direction = -1) +
-  labs(x = "", y = "Number of Unique Papers", fill = "Country of\nInstitution", title = "Top 20 Institutions of Jan 2018") + coord_flip() 
+  labs(x = "", y = "Number of Unique Papers", fill = "Country of\nInstitution", title = "Top 20 Institutions of Jan 2018") + coord_flip() +
+  theme(axis.text = element_text(size = 15),axis.title = element_text(size = rel(2)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 15), legend.title = element_text(size = rel(2)))
 
 
 ggsave("top_20_unis.png", width = 13, height = 8, units = "in")
@@ -101,7 +102,7 @@ top_uni_papers %>%
   ggplot(aes(x = institution)) + geom_bar(aes(fill = category), stat = "count", position = "fill") + coord_flip()  +
 scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20),
                     guide = guide_legend(nrow=3)) +
-  theme(legend.position="bottom") +
+  theme(legend.position="bottom", axis.text = element_text(size = 15),axis.title = element_text(size = rel(2)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 14), legend.title = element_text(size = rel(1.4))) +
   labs(x = "", y = "Percentage of Unique Papers", fill = "Category", title = "Distribution of Categories for Top 20 Institutions")
 
 ggsave("top_20_unis_cats.png", width = 13, height = 8, units = "in")
@@ -131,7 +132,7 @@ top_country_papers <- top_country_emails %>%
 top_country_papers %>%
   ggplot(aes(x = country, fill = country)) + geom_bar(stat = "count") +
   scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20)) +
-  theme(legend.position="none") +
+  theme(legend.position="none", axis.text = element_text(size = 15),axis.title = element_text(size = rel(2)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 15), legend.title = element_text(size = rel(2))) +
   coord_flip() +
   labs(x = "", y = "Number of Unique Papers", title = "Top 20 Countries of Jan 2018")
 ggsave("top_20_countries.png", width = 13, height = 8, units = "in")
@@ -140,7 +141,7 @@ top_country_papers %>%
   ggplot(aes(x = country, fill = category)) + geom_bar(stat = "count", position = "fill") +
   scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20),
                     guide = guide_legend(nrow=3)) +
-  theme(legend.position="bottom", legend.justification = "left") +
+  theme(legend.position="bottom", axis.text = element_text(size = 15),axis.title = element_text(size = rel(1.7)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 12), legend.title = element_text(size = rel(1.2))) +
   coord_flip() +
   labs(x = "", y = "Percentage of Unique Papers", fill = "Category", title = "Distribution of Categories for Top 20 Countries")
 
@@ -171,7 +172,7 @@ top_category_papers %>%
   group_by(main_category, document_id) %>% 
   ggplot(aes(x = main_category, fill = main_category)) + geom_bar(stat = "count") +
   scale_fill_manual(values = colorRampPalette(brewer.pal(8, "Set3"))(20)) +
-  theme(legend.position="none") +
+  theme(legend.position="none", axis.text = element_text(size = 15),axis.title = element_text(size = rel(1.7)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 15), legend.title = element_text(size = rel(2))) +
   coord_flip() +
   labs(x = "", y = "Number of Unique Papers", title = "Distribution of Categories for Jan 2018")
 
@@ -182,7 +183,7 @@ top_category_papers %>%
   ggplot(aes(x = main_category, fill = country_top)) + geom_bar(stat = "count", position = "fill") +
   scale_fill_manual(values = colorRampPalette(brewer.pal(12, "Set3"))(21),
                     guide = guide_legend(nrow=2)) +
-  theme(legend.position="bottom") +
+  theme(legend.position="bottom", axis.text = element_text(size = 15),axis.title = element_text(size = rel(1.7)), plot.title = element_text(size = rel(2)), legend.text = element_text(size = 12), legend.title = element_text(size = rel(1.3))) +
   coord_flip() +
   labs(x = "", y = "Percentage of Unique Papers", fill = "Top 20\nCountries", title = "Distribution of Countries within Category")
 ggsave("cat_by_country.png", width = 13, height = 8, units = "in")
