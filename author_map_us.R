@@ -104,3 +104,4 @@ p <- state.counts %>% plot_geo(locationmode = 'USA-states') %>%
 
 # Save plotly figure
 htmlwidgets::saveWidget(p, file = "map_us.html")
+
