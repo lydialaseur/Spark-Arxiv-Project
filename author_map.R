@@ -4,7 +4,7 @@ install_load('plotly')
 install_load('RColorBrewer')
 install_load('webshot')
 
-df <- read.csv('emails_with_info2.csv')
+df <- read.csv('emails_with_info.csv')
 
 df$province <- NULL  # province has no non-NAs, so remove it
 
