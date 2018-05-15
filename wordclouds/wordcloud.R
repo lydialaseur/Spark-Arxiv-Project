@@ -34,6 +34,6 @@ wordcloud(abstract_words_df$word,
           scale = c(6, 0.025),
           rot.per = 0,
           fixed.asp = FALSE,
-          colors = magma(100, direction = -1))
+          colors = viridis(100, direction = -1, option = "cividis"))
 dev.off()
 
